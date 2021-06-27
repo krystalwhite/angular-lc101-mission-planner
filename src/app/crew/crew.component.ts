@@ -28,7 +28,7 @@ export class CrewComponent implements OnInit {
     }
     
     
-  }
+  
 
   remove(member: object) {
     let index = this.crew.indexOf(member);
