@@ -1,7 +1,12 @@
 <h3>Equipment</h3>
 <ul>
-  <li>Habitat dome</li>
+  <li *ngFor = "let item of equipment"> {{item}}
+    <button (click)="removeEquipment(item)">remove</button>
+  <!-- <li>Habitat dome</li>
   <li>Drones</li>
   <li>Food containers</li>
-  <li>Oxygen tanks</li>
+  <li>Oxygen tanks</li> -->
 </ul>
+
+<input #equipmentItem type="text" placeholder="Add equipment item" (keyup.enter)="addEquipment(equipmentItem.value)"/>
+<button (click)="addEquipment(equipmentItem.value)">Add</button>

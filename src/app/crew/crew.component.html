@@ -21,6 +21,6 @@
 </ul>
 
 
-<input #name type="text"/>
+<input #name type="text" placeholder="Add crew member"/>
 <label>First mission<input #firstMission type="checkbox"/></label>
-<button *ngIf = "!crew.includes(name)" (click)="add(name.value, firstMission.checked)">Add</button>
+<button *ngIf = "!crew.includes(name)" (click)="add(name.value, firstMission.checked)" >Add</button>
