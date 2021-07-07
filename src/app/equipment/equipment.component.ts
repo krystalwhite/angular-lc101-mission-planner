@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Equipment } from '../equipment';
 
 @Component({
   selector: 'app-equipment',
@@ -17,7 +18,7 @@ export class EquipmentComponent implements OnInit {
        {name: 'Satellite', mass: 1200},
        {name: 'R2 Unit', mass: 32}
    ];
-   cargoHold: object[] = [];
+   cargoHold: Equipment[] = [];
    cargoMass: number = 0;
    maximumAllowedMass: number = 2000;
    maxItems: number = 10;
@@ -28,7 +29,7 @@ export class EquipmentComponent implements OnInit {
    ngOnInit() { }
 
    // Code your addItem function here:
-   addItem(equip : object) {
+   addItem(equip : Equipment) {
      this.cargoHold.push(equip);
      this.cargoMass += equip.mass;
      if (this.cargoMass <= this.maximumAllowedMass) {
