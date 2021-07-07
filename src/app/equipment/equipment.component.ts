@@ -1,3 +1,4 @@
+import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Equipment } from '../equipment';
 
@@ -7,7 +8,7 @@ import { Equipment } from '../equipment';
   styleUrls: ['./equipment.component.css']
 })
 export class EquipmentComponent implements OnInit {
-   equipmentItems: object[] = [
+   equipmentItems: Equipment[] = [
        {name: 'Duct Tape', mass: 0.5},
        {name: 'Space Camera', mass: 20},
        {name: 'Food', mass: 150},
@@ -22,6 +23,8 @@ export class EquipmentComponent implements OnInit {
    cargoMass: number = 0;
    maximumAllowedMass: number = 2000;
    maxItems: number = 10;
+   massRemaining : number = 2000;
+   inactive : boolean = false;
 
 
    constructor() { }
@@ -32,10 +35,20 @@ export class EquipmentComponent implements OnInit {
    addItem(equip : Equipment) {
      this.cargoHold.push(equip);
      this.cargoMass += equip.mass;
+     this.massRemaining = this.maximumAllowedMass - this.cargoMass;
      if (this.cargoMass <= this.maximumAllowedMass) {
+      //  what makes it true or false? are we using this to bind the disabled attribute?
+      // button color is goldenrod when active; for some reason, duct tape remains yellow after 10 items in cargoHold; buttons are not disabled ever ????
        return true;
      } else {
        return false;
      }
+   }
+
+   disableCargoButton() {
+     if (this.cargoHold.length === this.maxItems) {
+       this.inactive = true;
+     }
+    //  if item.mass >= massRemaining return true
    }
 }
