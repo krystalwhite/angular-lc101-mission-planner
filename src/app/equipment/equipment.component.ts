@@ -33,22 +33,31 @@ export class EquipmentComponent implements OnInit {
 
    // Code your addItem function here:
    addItem(equip : Equipment) {
+     if (this.cargoHold.length === this.maxItems) {
+        this.inactive = true;
+     }
+
+     if (equip.mass > this.massRemaining) {
+       this.inactive = true;
+     } else {
+       this.inactive = false;
+     }
      this.cargoHold.push(equip);
      this.cargoMass += equip.mass;
      this.massRemaining = this.maximumAllowedMass - this.cargoMass;
-     if (this.cargoMass <= this.maximumAllowedMass) {
-      //  what makes it true or false? are we using this to bind the disabled attribute?
-      // button color is goldenrod when active; for some reason, duct tape remains yellow after 10 items in cargoHold; buttons are not disabled ever ????
-       return true;
-     } else {
-       return false;
-     }
+     
+    //  if (this.cargoMass <= this.maximumAllowedMass) {
+    //   //  what makes it true or false? are we using this to bind the disabled attribute?
+    //   // button color is goldenrod when active; for some reason, duct tape remains yellow after 10 items in cargoHold; buttons are not disabled ever ????
+    //    return true;
+    //  } else {
+    //    return false;
+    //  }
    }
 
-   disableCargoButton() {
-     if (this.cargoHold.length === this.maxItems) {
-       this.inactive = true;
-     }
-    //  if item.mass >= massRemaining return true
-   }
+  //  disableCargoButton() {
+     
+  //    }
+  //   //  if item.mass >= massRemaining return true
+  //  }
 }
