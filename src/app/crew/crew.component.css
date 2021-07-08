@@ -23,3 +23,7 @@ h3 {
 .selected {
     color: blueviolet;
 }
+
+.visible {
+    visibility: visible;
+}
