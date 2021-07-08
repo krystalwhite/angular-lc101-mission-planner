@@ -23,7 +23,7 @@ export class EquipmentComponent implements OnInit {
    cargoMass: number = 0;
    maximumAllowedMass: number = 2000;
    maxItems: number = 10;
-   massRemaining : number = 2000;
+   massRemaining : number;
    inactive : boolean = false;
 
 
@@ -32,19 +32,32 @@ export class EquipmentComponent implements OnInit {
    ngOnInit() { }
 
    // Code your addItem function here:
-   addItem(equip : Equipment) {
-     if (this.cargoHold.length === this.maxItems) {
-        this.inactive = true;
-     }
-
-     if (equip.mass > this.massRemaining) {
-       this.inactive = true;
-     } else {
-       this.inactive = false;
-     }
+   addItem(equip : Equipment) : boolean {
      this.cargoHold.push(equip);
      this.cargoMass += equip.mass;
-     this.massRemaining = this.maximumAllowedMass - this.cargoMass;
+     this.massRemaining = this.maximumAllowedMass - this.cargoMass; 
+
+     if (this.massRemaining < 200) {
+       return false;
+     } else {
+       return true;
+     }
+   }
+    
+   tooMuchCargo() {
+      if (this.cargoHold.length === this.maxItems) {
+        this.inactive = true;
+      }
+   }
+
+   tooMuchMass(equip : Equipment) {
+      if (equip.mass > this.massRemaining) {
+        this.inactive = true;
+      } else {
+        this.inactive = false;
+      }
+   }
+     
      
     //  if (this.cargoMass <= this.maximumAllowedMass) {
     //   //  what makes it true or false? are we using this to bind the disabled attribute?
@@ -60,4 +73,4 @@ export class EquipmentComponent implements OnInit {
   //    }
   //   //  if item.mass >= massRemaining return true
   //  }
-}
+// }
