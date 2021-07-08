@@ -25,6 +25,7 @@ export class EquipmentComponent implements OnInit {
    maxItems: number = 10;
    massRemaining : number;
    inactive : boolean = false;
+   nearingTooMuchMass : boolean = false;
 
 
    constructor() { }
@@ -37,9 +38,11 @@ export class EquipmentComponent implements OnInit {
      this.cargoMass += equip.mass;
      this.massRemaining = this.maximumAllowedMass - this.cargoMass; 
 
-     if (this.massRemaining < 200) {
+     if (this.massRemaining <= 200) {
+       this.nearingTooMuchMass = true;
        return false;
      } else {
+       this.nearingTooMuchMass = false;
        return true;
      }
    }
@@ -50,27 +53,10 @@ export class EquipmentComponent implements OnInit {
       }
    }
 
-   tooMuchMass(equip : Equipment) {
-      if (equip.mass > this.massRemaining) {
-        this.inactive = true;
-      } else {
-        this.inactive = false;
-      }
-   }
-     
-     
-    //  if (this.cargoMass <= this.maximumAllowedMass) {
-    //   //  what makes it true or false? are we using this to bind the disabled attribute?
-    //   // button color is goldenrod when active; for some reason, duct tape remains yellow after 10 items in cargoHold; buttons are not disabled ever ????
-    //    return true;
-    //  } else {
-    //    return false;
-    //  }
-   }
+  tooClose() {
 
-  //  disableCargoButton() {
+  }
+
+  }   
      
-  //    }
-  //   //  if item.mass >= massRemaining return true
-  //  }
-// }
+   
