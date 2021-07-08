@@ -33,4 +33,12 @@ export class CrewComponent implements OnInit {
       this.crew.push(candidate);
     }
   }
+
+  fullCrew() {
+    if (this.crew.length === 3) {
+      return false;
+    } else if (this.crew.length < 3) {
+      return true;
+    }
+  }
 }

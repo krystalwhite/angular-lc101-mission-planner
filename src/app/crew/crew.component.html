@@ -7,7 +7,7 @@
 <hr>
 <div class="displayBox">
     <h3>Crew 
-        <span> Full! </span><!-- Add a span tag here to display 'Full' when the crew reaches 3. --></h3>
+        <span [class.hidden] = "fullCrew()"> Full! </span><!-- Add a span tag here to display 'Full' when the crew reaches 3. --></h3>
     <ol>
         <li *ngFor="let astronaut of crew">{{astronaut.name}}</li>
     </ol>
